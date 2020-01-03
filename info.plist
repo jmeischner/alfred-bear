@@ -8,6 +8,19 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>18614C57-0E61-41D6-BA84-7202F64946BA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5A5BB3CD-917E-4A09-9769-B7EB074A3333</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>5A5BB3CD-917E-4A09-9769-B7EB074A3333</key>
 		<array>
 			<dict>
@@ -25,7 +38,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5A5BB3CD-917E-4A09-9769-B7EB074A3333</string>
+				<string>18614C57-0E61-41D6-BA84-7202F64946BA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -134,12 +147,33 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>delimiter</key>
+				<string>^</string>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>18614C57-0E61-41D6-BA84-7202F64946BA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>variables</key>
 				<dict>
+					<key>newWindow</key>
+					<string>{var:split3}</string>
+					<key>script</key>
+					<string>{var:split2}</string>
 					<key>template</key>
-					<string>{query}</string>
+					<string>{var:split1}</string>
 				</dict>
 			</dict>
 			<key>type</key>
@@ -203,6 +237,13 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>18614C57-0E61-41D6-BA84-7202F64946BA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>190</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 		<key>5A5BB3CD-917E-4A09-9769-B7EB074A3333</key>
 		<dict>
 			<key>xpos</key>
@@ -213,9 +254,9 @@
 		<key>5C8038DD-20A6-4A42-A79C-52993C619D5F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>85</integer>
+			<integer>10</integer>
 			<key>ypos</key>
-			<integer>110</integer>
+			<integer>100</integer>
 		</dict>
 		<key>8829215E-D666-4099-A10F-72439953C11E</key>
 		<dict>
@@ -241,8 +282,8 @@
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>bearTemplateDirectory</key>
-		<string>~/.bear-templates</string>
+		<key>bearTemplateIndex</key>
+		<string>~/.bear-templates/index.yml</string>
 	</dict>
 	<key>version</key>
 	<string></string>

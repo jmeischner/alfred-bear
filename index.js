@@ -1,6 +1,7 @@
 const alfy = require('alfy');
 const fs = require('fs');
 const path = require('path');
+const yaml = require('yaml');
 
 // Todo: use alfred-notifier
 
@@ -11,14 +12,21 @@ function resolveHome(filepath) {
     return filepath;
 }
 
-const templateDir = resolveHome(process.env.bearTemplateDirectory);
-let templates = fs.readdirSync(templateDir);
+const indexPath = resolveHome(process.env.bearTemplateIndex);
+const templateDir = path.dirname(indexPath);
+const indexFile = fs.readFileSync(indexPath, 'utf8');
+const index = yaml.parse(indexFile);
 
 items = alfy
-    .inputMatches(templates)
-    .map(element => ({
-        title: path.basename(element, path.extname(element)),
-        arg: path.join(templateDir, element)
-    }));
+    .inputMatches(index.templates, 'title')
+    .map(element => {
+        const filepath = path.join(templateDir, element.file);
+        const newWindow = element.newWindow ? 'yes' : 'no';
+        const script = element.script ? path.join(templateDir, element.script) : '';
+        return {
+            title: element.title,
+            arg: `${filepath}^${script}^${newWindow}`
+        }
+    });
 
 alfy.output(items);
