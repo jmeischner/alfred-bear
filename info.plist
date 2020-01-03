@@ -199,6 +199,101 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>bt</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Looking for Templates</string>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node bear-template/index.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>choose template</string>
+				<key>title</key>
+				<string>Bear Template</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>5C8038DD-20A6-4A42-A79C-52993C619D5F</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node bear-template/readFile.js</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CA6467D3-FD65-44D6-ADCA-F4255A377CFB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node bear-template/encodeAndOpen.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8829215E-D666-4099-A10F-72439953C11E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -272,101 +367,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>bear</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>./node_modules/.bin/run-node index.js "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>choose template</string>
-				<key>title</key>
-				<string>bear</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>5C8038DD-20A6-4A42-A79C-52993C619D5F</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./node_modules/.bin/run-node bear-template/readFile.js</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>CA6467D3-FD65-44D6-ADCA-F4255A377CFB</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./node_modules/.bin/run-node bear-template/encodeAndOpen.js "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>8829215E-D666-4099-A10F-72439953C11E</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string>{query}</string>
 				<key>variables</key>
@@ -390,30 +390,30 @@
 		<key>07070BCD-907F-49F0-A9FE-439FA773DBF2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>910</integer>
+			<integer>800</integer>
 			<key>ypos</key>
-			<integer>35</integer>
+			<integer>40</integer>
 		</dict>
 		<key>18614C57-0E61-41D6-BA84-7202F64946BA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>190</integer>
+			<integer>195</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>130</integer>
 		</dict>
 		<key>5A5BB3CD-917E-4A09-9769-B7EB074A3333</key>
 		<dict>
 			<key>xpos</key>
-			<integer>285</integer>
+			<integer>280</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>130</integer>
 		</dict>
 		<key>5A602234-A199-4DA8-8758-00CBE20D46B2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>550</integer>
+			<integer>530</integer>
 			<key>ypos</key>
-			<integer>35</integer>
+			<integer>40</integer>
 		</dict>
 		<key>5C8038DD-20A6-4A42-A79C-52993C619D5F</key>
 		<dict>
@@ -425,35 +425,35 @@
 		<key>6834784E-3E44-4B26-B95E-828C02FCD04E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>380</integer>
+			<integer>385</integer>
 			<key>ypos</key>
-			<integer>40</integer>
+			<integer>120</integer>
 		</dict>
 		<key>8829215E-D666-4099-A10F-72439953C11E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>985</integer>
+			<integer>1270</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>115</integer>
 		</dict>
 		<key>B4548DFD-B724-4667-AB95-C1CE6BFE4E9F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>875</integer>
+			<integer>1160</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>145</integer>
 		</dict>
 		<key>CA6467D3-FD65-44D6-ADCA-F4255A377CFB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>670</integer>
+			<integer>955</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>115</integer>
 		</dict>
 		<key>E3B6A220-5D30-45D4-83BE-1F6026E1B344</key>
 		<dict>
 			<key>xpos</key>
-			<integer>695</integer>
+			<integer>615</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
