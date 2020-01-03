@@ -23,9 +23,11 @@ items = alfy
         const filepath = path.join(templateDir, element.file);
         const newWindow = element.newWindow ? 'yes' : 'no';
         const script = element.script ? path.join(templateDir, element.script) : '';
+        const variables = element.var ? JSON.stringify(element.var) : '""';
+        const question = element.question ? element.question : ''
         return {
             title: element.title,
-            arg: `${filepath}^${script}^${newWindow}`
+            arg: `${filepath}^${script}^${newWindow}^${variables}^${question}`
         }
     });
 

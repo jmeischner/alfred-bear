@@ -20,6 +20,7 @@
   "dependencies": {
     "alfy": "^0.9.1",
     "handlebars": "^4.5.3",
+    "lodash": "^4.17.15",
     "open": "^7.0.0",
     "urlencode": "^1.1.0",
     "yaml": "^1.7.2"
