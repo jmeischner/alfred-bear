@@ -1,0 +1,21 @@
+{
+  "name": "alfred-bear",
+  "version": "0.0.1",
+  "description": "Alfred Workflow to handle bear templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alfred",
+    "alfredapp",
+    "bear",
+    "workflow",
+    "productivity"
+  ],
+  "author": "Jan Meischner",
+  "license": "ISC",
+  "dependencies": {
+    "alfy": "^0.9.1"
+  }
+}
