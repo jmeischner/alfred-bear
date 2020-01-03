@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "alfy-init",
-		"preuninstall": "alfy-cleanup"
+    "preuninstall": "alfy-cleanup"
   },
   "keywords": [
     "alfred",
@@ -18,6 +18,8 @@
   "author": "Jan Meischner",
   "license": "ISC",
   "dependencies": {
-    "alfy": "^0.9.1"
+    "alfy": "^0.9.1",
+    "open": "^7.0.0",
+    "urlencode": "^1.1.0"
   }
 }
