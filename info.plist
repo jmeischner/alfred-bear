@@ -139,9 +139,9 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>Jan Meischner</string>
 	<key>description</key>
-	<string></string>
+	<string>Alfred Workflow to handle bear templates</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -257,7 +257,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node bear-template/readFile.js</string>
+				<string>./node_modules/.bin/run-node bear-template/readAndCompileTemplate.js</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -316,7 +316,7 @@
 					</dict>
 				</array>
 				<key>elselabel</key>
-				<string>else</string>
+				<string>No Question</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -468,8 +468,8 @@
 		<string>~/.bear-templates/index.yml</string>
 	</dict>
 	<key>version</key>
-	<string></string>
+	<string>0.1.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/jmeischner/alfred-bear#readme</string>
 </dict>
 </plist>
