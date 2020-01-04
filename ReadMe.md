@@ -38,7 +38,7 @@ templates:
 
 #### title
 The title is shown in the template list to chose from.
-![Alfred Template Title](/img/title.png)
+![Alfred Template Title](https://github.com/jmeischner/alfred-bear/blob/master/img/title.png?raw=true)
 
 #### file
 Path to the template markdown file.
@@ -74,4 +74,4 @@ List of static placeholders for the template (e.g. APIToken)
 
 #### question [optional]
 Sets a question to the workflow which asks for an additional placeholder value. To use the answer of this question in the template the placeholder key is `{{question}}`.
-![Alfred Template Question](/img/question.png)
+![Alfred Template Question](https://github.com/jmeischner/alfred-bear/blob/master/img/question.png?raw=true)
