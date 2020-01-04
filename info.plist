@@ -138,10 +138,14 @@
 			</dict>
 		</array>
 	</dict>
+	<key>createdby</key>
+	<string></string>
+	<key>description</key>
+	<string></string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Bear</string>
+	<string>Bear Templates</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -464,6 +468,8 @@
 		<string>~/.bear-templates/index.yml</string>
 	</dict>
 	<key>version</key>
+	<string></string>
+	<key>webaddress</key>
 	<string></string>
 </dict>
 </plist>
