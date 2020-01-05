@@ -2,17 +2,26 @@ const fs = require('fs');
 const Handlebars = require('handlebars')
 const _ = require('lodash');
 
-const templatePath = process.env.template;
-const fileContent = fs.readFileSync(templatePath, 'utf8');
-const template = Handlebars.compile(fileContent);
+function getCompiledTemplate(templatePath) {
+    const fileContent = fs.readFileSync(templatePath, 'utf8');
+    return Handlebars.compile(fileContent);
+}
 
-const variables = JSON.parse(process.env.variables);
-const answer = process.env.answer ? {answer: process.env.answer} : {};
+async function getTemplateData(variablesVar, answerVar, script) {
+    const variables = JSON.parse(variablesVar);
+    const answer = answerVar ? {answer: answerVar} : {};
+    let data = variables.var ? _.merge(variables.var, answer) : answer;
+    
+    const scriptData = await script(data)
+    data = _.merge(data, scriptData);
 
-let data = variables.var ? _.merge(variables.var, answer) : answer;
-const scriptPath = process.env.script;
-const scriptData = scriptPath ? await require(scriptPath)(data) : {};
+    return data;
+}
 
-data = _.merge(data, scriptData);
+const { template: templatePath, variables, answer, script: scriptPath} = process.env;
+const script = scriptPath ? require(scriptPath) : () => ({});
+
+const template = getCompiledTemplate(templatePath);
+const data = await getTemplateData(variables, answer, script);
 
 console.log(template(data));
