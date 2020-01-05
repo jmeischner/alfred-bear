@@ -2,8 +2,9 @@ const alfy = require("alfy");
 const fs = require("fs");
 const path = require("path");
 const yaml = require("yaml");
+const alfredNotifier = require('alfred-notifier');
 
-// Todo: use alfred-notifier to show updates
+alfredNotifier();
 
 function resolveHome(filepath) {
   if (filepath[0] === "~") {

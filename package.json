@@ -19,6 +19,7 @@
   "author": "Jan Meischner",
   "license": "ISC",
   "dependencies": {
+    "alfred-notifier": "^0.2.3",
     "alfy": "^0.9.1",
     "handlebars": "^4.5.3",
     "open": "^7.0.0",
