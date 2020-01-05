@@ -70,7 +70,7 @@ const rp = require('request-promise');
  * from the var option and the answer from 
  * the optional question.
  */
-function async greet(variables) {
+async function greet(variables) {
   const data = await rp(variables.myRestApiEndpoint);
   return {
     myText: data.body

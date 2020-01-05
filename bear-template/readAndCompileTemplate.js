@@ -1,6 +1,5 @@
 const fs = require('fs');
 const Handlebars = require('handlebars')
-const _ = require('lodash');
 
 function getCompiledTemplate(templatePath) {
     const fileContent = fs.readFileSync(templatePath, 'utf8');
@@ -10,10 +9,10 @@ function getCompiledTemplate(templatePath) {
 async function getTemplateData(variablesVar, answerVar, script) {
     const variables = JSON.parse(variablesVar);
     const answer = answerVar ? {answer: answerVar} : {};
-    let data = variables.var ? _.merge(variables.var, answer) : answer;
+    let data = variables.var ? {...variables.var, ...answer} : answer;
     
     const scriptData = await script(data)
-    data = _.merge(data, scriptData);
+    data = {...data, ...scriptData};
 
     return data;
 }
