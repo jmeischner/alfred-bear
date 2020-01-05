@@ -8,25 +8,12 @@ npm install --global alfred-bear
 ```
 
 ## Usage
-The idea is that there is a bear template directoy [default: *~/.bear-templates*] -- which can be synced e.g. with a .dotfiles repository -- with an template index [default: *index.yml*] and depending on the complexity of the possible templates either directories per template or simple markdown files.
-These paths are handled by the `bearTemplateIndex` workflow variable which can be changed in the workflow settings.
+While creating note templates with static content can be useful, having the possibility to use dynamic placeholder from any source I want is really great.
+That's why I built this workflow.
 
-A possible template directory can have the following form
+To get an idea how this should work, take a look at an example: the [Jira Ticket](https://github.com/jmeischner/alfred-bear-jira-ticket)
 
-```plaintext
-- ~/.bear-templates
-'- index.yml
-'- weekly-review
- '- template.md
- '- script.js
-'- jira-ticket
- '- ticket.md
- '- ticket.js
- '- package.json
- '- node_modules
-'- diary.md
-' ...
-```
+The idea is that there is a *index.yml* which contains a list of your templates and some optional variables to configure the template behavior.
 
 ### The Index
 the `index.yml` has the following form
@@ -41,7 +28,9 @@ templates:
       myFirstVar: "Hello "
       mySecond: "World!"
     question: "Any Subtitle?"
-  - ...
+
+  - title: "Jira Ticket"
+    ...
 ```
 
 #### title
@@ -54,6 +43,8 @@ This file can contain 2 different styles of placeholder.
 
 1. Normal Alfred [Dynamic Placeholder](https://www.alfredapp.com/help/workflows/advanced/placeholders/)
 2. Placeholders with double curly braces `{{myPlaceholder}}` which follow the [Handlebars](https://handlebarsjs.com/guide/) syntax. These Placeholders could come from the `script`, `var` or `question` option.
+
+First the *handlebars* placeholders are replaced in the template and in the second step the dynamic placeholders from *alfred*.
 
 #### script [optional]
 Path to a *node.js* module file. This module has to export an [optional async] function which returns an object, whose properties are placeholder keys.
@@ -89,6 +80,29 @@ List of static placeholders for the template (e.g. APIToken, BaseUrl for REST Ca
 #### question [optional]
 Sets a question to the workflow which asks for an additional placeholder value. To use the answer of this question in the template or script the placeholder key is `{{answer}}`.
 ![Alfred Template Question](https://github.com/jmeischner/alfred-bear/blob/master/img/question.png?raw=true)
+
+### The Template Directory
+There is a bear template directoy [default: *~/.bear-templates*] -- which can be synced e.g. with a .dotfiles repository, Dropbox, etc.
+This directory should contain a template index [default: *index.yml*] and all the necessary files for your templates.
+
+These paths are handled by the `bearTemplateIndex` workflow variable which can be changed in the workflow settings.
+
+A possible template directory can have the following form
+
+```plaintext
+- ~/.bear-templates
+'-- index.yml
+'-- weekly-review
+  '-- template.md
+  '-- script.js
+'-- jira-ticket
+  '-- ticket.md
+  '-- ticket.js
+  '-- package.json
+  '-- node_modules
+'-- diary.md
+' ...
+```
 
 ## Examples
 If someone built a nice basis for a template, feel free to add it to this list and make a PR.
