@@ -89,3 +89,8 @@ List of static placeholders for the template (e.g. APIToken, BaseUrl for REST Ca
 #### question [optional]
 Sets a question to the workflow which asks for an additional placeholder value. To use the answer of this question in the template or script the placeholder key is `{{answer}}`.
 ![Alfred Template Question](https://github.com/jmeischner/alfred-bear/blob/master/img/question.png?raw=true)
+
+## Examples
+If someone built a nice basis for a template, feel free to add it to this list and make a PR.
+
+- [Jira Ticket](https://github.com/jmeischner/alfred-bear-jira-ticket)
