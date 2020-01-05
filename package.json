@@ -1,6 +1,6 @@
 {
   "name": "alfred-bear",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Alfred Workflow to handle bear templates",
   "main": "index.js",
   "repository": "https://github.com/jmeischner/alfred-bear",
@@ -19,7 +19,6 @@
   "author": "Jan Meischner",
   "license": "ISC",
   "dependencies": {
-    "alfred-notifier": "^0.2.3",
     "alfy": "^0.9.1",
     "handlebars": "^4.5.3",
     "open": "^7.0.0",

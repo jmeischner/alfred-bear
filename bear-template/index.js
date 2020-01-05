@@ -2,9 +2,6 @@ const alfy = require("alfy");
 const fs = require("fs");
 const path = require("path");
 const yaml = require("yaml");
-const alfredNotifier = require('alfred-notifier');
-
-alfredNotifier();
 
 function resolveHome(filepath) {
   if (filepath[0] === "~") {
