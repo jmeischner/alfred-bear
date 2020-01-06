@@ -108,3 +108,4 @@ A possible template directory can have the following form
 If someone built a nice basis for a template, feel free to add it to this list and make a PR.
 
 - [Jira Ticket](https://github.com/jmeischner/alfred-bear-jira-ticket)
+- [Daily Log](https://github.com/jmeischner/alfred-bear-daily-log)
