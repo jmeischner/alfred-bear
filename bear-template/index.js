@@ -4,6 +4,26 @@ const path = require("path");
 const yaml = require("yaml");
 
 function resolveHome(filepath) {
+    if (filepath[0] === '~') {
+        return path.join(process.env.HOME, filepath.slice(1));
+    }
+    return filepath;
+}
+
+function checkIfIndexExists(pathToIndex, success) {
+  const indexPath = resolveHome(pathToIndex);
+
+  fs.stat(indexPath, (err, stats) => {
+    if (err) {
+      alfy.error(`Cannot read your bearTemplateIndex (index.yml) file at ${indexPath}`);
+    } else {
+      success(pathToIndex);
+    }
+  })
+
+}
+
+function resolveHome(filepath) {
   if (filepath[0] === "~") {
     return path.join(process.env.HOME, filepath.slice(1));
   }
@@ -49,6 +69,8 @@ function getTemplates(pathToIndex) {
 }
 
 const pathToIndex = process.env.bearTemplateIndex;
-const templates = getTemplates(pathToIndex);
-const items = alfy.inputMatches(templates, "title");
-alfy.output(items);
+checkIfIndexExists(pathToIndex, pathToIndex => {
+  const templates = getTemplates(pathToIndex);
+  const items = alfy.inputMatches(templates, "title");
+  alfy.output(items);
+})
