@@ -3,13 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("yaml");
 
-function resolveHome(filepath) {
-    if (filepath[0] === '~') {
-        return path.join(process.env.HOME, filepath.slice(1));
-    }
-    return filepath;
-}
-
 function checkIfIndexExists(pathToIndex, success) {
   const indexPath = resolveHome(pathToIndex);
 
