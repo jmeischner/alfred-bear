@@ -109,3 +109,4 @@ If someone built a nice basis for a template, feel free to add it to this list a
 
 - [Jira Ticket](https://github.com/jmeischner/alfred-bear-jira-ticket)
 - [Daily Log](https://github.com/jmeischner/alfred-bear-daily-log)
+- [Create OKRs](https://github.com/jmeischner/alfred-bear-okrs)
