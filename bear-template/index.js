@@ -31,7 +31,7 @@ function getIndex(pathToIndex) {
 
 function createSubtitle(element) {
   const newWindowSubtitle = element.newWindow ? "Opens new Window" : "";
-  const questionSubtitle = element.question ? "Asks Question TEST" : "";
+  const questionSubtitle = element.question ? "Asks Question" : "";
 
   if (newWindowSubtitle && questionSubtitle) {
     return `${newWindowSubtitle} and ${questionSubtitle}`;
