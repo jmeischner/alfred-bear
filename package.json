@@ -1,6 +1,6 @@
 {
   "name": "alfred-bear",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "Alfred Workflow to handle bear templates",
   "main": "index.js",
   "type": "module",
