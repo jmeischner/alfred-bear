@@ -1,7 +1,7 @@
-const alfy = require("alfy");
-const fs = require("fs");
-const path = require("path");
-const yaml = require("yaml");
+import alfy from "alfy";
+import fs from "fs";
+import path from "path";
+import yaml from "yaml";
 
 function resolveHome(filepath) {
   if (filepath[0] === "~") {
@@ -15,12 +15,13 @@ function checkIfIndexExists(pathToIndex, success) {
 
   fs.stat(indexPath, (err, stats) => {
     if (err) {
-      alfy.error(`Cannot read your bearTemplateIndex (index.yml) file at ${indexPath}`);
+      alfy.error(
+        `Cannot read your bearTemplateIndex (index.yml) file at ${indexPath}`
+      );
     } else {
       success(indexPath);
     }
-  })
-
+  });
 }
 
 function getIndex(pathToIndex) {
@@ -30,7 +31,7 @@ function getIndex(pathToIndex) {
 
 function createSubtitle(element) {
   const newWindowSubtitle = element.newWindow ? "Opens new Window" : "";
-  const questionSubtitle = element.question ? "Asks Question" : "";
+  const questionSubtitle = element.question ? "Asks Question TEST" : "";
 
   if (newWindowSubtitle && questionSubtitle) {
     return `${newWindowSubtitle} and ${questionSubtitle}`;
@@ -43,7 +44,7 @@ function getTemplates(indexPath) {
   const templateDir = path.dirname(indexPath);
   const index = getIndex(indexPath);
 
-  return index.templates.map(element => {
+  return index.templates.map((element) => {
     const filepath = path.join(templateDir, element.file);
     const newWindow = element.newWindow ? "yes" : "no";
     const script = element.script ? path.join(templateDir, element.script) : "";
@@ -55,14 +56,14 @@ function getTemplates(indexPath) {
     return {
       title: element.title,
       subtitle: subtitle,
-      arg: `${filepath}^${script}^${newWindow}^${variables}^${question}`
+      arg: `${filepath}^${script}^${newWindow}^${variables}^${question}`,
     };
   });
 }
 
 const pathToIndex = process.env.bearTemplateIndex;
-checkIfIndexExists(pathToIndex, pathToIndex => {
+checkIfIndexExists(pathToIndex, (pathToIndex) => {
   const templates = getTemplates(pathToIndex);
   const items = alfy.inputMatches(templates, "title");
   alfy.output(items);
-})
+});

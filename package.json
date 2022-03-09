@@ -1,8 +1,9 @@
 {
   "name": "alfred-bear",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Alfred Workflow to handle bear templates",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/jmeischner/alfred-bear",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,10 +20,10 @@
   "author": "Jan Meischner",
   "license": "ISC",
   "dependencies": {
-    "alfy": "^0.9.1",
-    "handlebars": "^4.7.6",
-    "open": "^7.1.0",
+    "alfy": "^0.12.2",
+    "handlebars": "^4.7.7",
+    "open": "^8.4.0",
     "urlencode": "^1.1.0",
-    "yaml": "^1.10.0"
+    "yaml": "^1.10.2"
   }
 }
