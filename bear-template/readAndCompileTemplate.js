@@ -11,7 +11,7 @@ async function getTemplateData(variablesVar, answerVar, script) {
   const answer = answerVar ? { answer: answerVar } : {};
   let data = variables.var ? { ...variables.var, ...answer } : answer;
 
-  const scriptData = await script(data);
+  const scriptData = script ? await script(data) : {};
   data = { ...data, ...scriptData };
 
   return data;
