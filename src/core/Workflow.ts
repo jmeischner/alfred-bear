@@ -1,5 +1,5 @@
 import { BearTemplateIndex, Template } from "./BearTemplateIndex.js";
-import { checkIfTemplateIndexExists } from "./utils.js";
+import { checkIfTemplateIndexExists, resolveHomePath } from "./utils.js";
 import yaml from "yaml";
 import fs from "fs";
 import { BearTemplateError } from "./Error.js";
@@ -11,8 +11,11 @@ export type TemplateMapperFunction<ResultType> = (
 
 export class Workflow {
   private templateIndex: BearTemplateIndex | null = null;
+  private pathToIndexFile: string;
 
-  constructor(private pathToIndexFile: string) {}
+  constructor(pathToIndexFile: string) {
+    this.pathToIndexFile = resolveHomePath(pathToIndexFile);
+  }
 
   private async readIndexFile(): Promise<BearTemplateIndex> {
     const indexFile = await checkIfTemplateIndexExists(this.pathToIndexFile);
@@ -33,6 +36,10 @@ export class Workflow {
 
   get templates(): Template[] {
     return this.templateIndex ? this.templateIndex.templates : [];
+  }
+
+  get indexFile(): string {
+    return this.pathToIndexFile;
   }
 
   mapTemplates<T>(mapper: TemplateMapperFunction<T>): T[] {

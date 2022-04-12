@@ -9,7 +9,7 @@ if (!process.env.bearTemplateIndex) {
   try {
     const workflow = new Workflow(process.env.bearTemplateIndex);
     await workflow.init();
-    const templateDir = path.dirname(process.env.bearTemplateIndex);
+    const templateDir = path.dirname(workflow.indexFile);
     const templates = workflow.mapTemplates((template) => {
       return new AlfredTemplate(template, templateDir);
     });

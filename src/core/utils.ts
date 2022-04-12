@@ -2,7 +2,7 @@ import path from "path";
 import { stat } from "fs";
 import { BearTemplateError } from "./Error.js";
 
-function resolveHomePath(filepath: string) {
+export function resolveHomePath(filepath: string) {
   if (filepath[0] === "~" && process.env.HOME) {
     return path.join(process.env.HOME, filepath.slice(1));
   }
