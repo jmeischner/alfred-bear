@@ -2,14 +2,14 @@
   "compilerOptions": {
     "target": "es2017",
     "lib": ["es2017", "dom"],
-    "module": "nodenext",
-    "moduleResolution": "node12",
+    "module": "esnext",
+    "moduleResolution": "node",
     "baseUrl": "./",
     "outDir": "workflow",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "skipLibCheck": true
   },
   "include": [
