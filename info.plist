@@ -232,7 +232,7 @@
 				<key>runningsubtext</key>
 				<string>Looking for Templates</string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node workflow/index.js "$1"</string>
+				<string>./node_modules/.bin/run-node workflow/alfred/templates.js "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>

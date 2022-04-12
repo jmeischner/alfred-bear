@@ -8,7 +8,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "alfy-init && tsc",
-    "preuninstall": "alfy-cleanup"
+    "preuninstall": "alfy-cleanup",
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "keywords": [
     "alfred",
@@ -28,6 +30,6 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
-    "typescript": "^4.6.3"
+    "typescript": "^4.7.0-dev.20220408"
   }
 }
