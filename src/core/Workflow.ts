@@ -3,6 +3,7 @@ import { checkIfTemplateIndexExists, resolveHomePath } from "./utils.js";
 import yaml from "yaml";
 import fs from "fs";
 import { BearTemplateError } from "./Error.js";
+
 export type TemplateMapperFunction<ResultType> = (
   template: Template,
   index: number,
