@@ -1,4 +1,6 @@
-import { resolveHomePath } from "./utils";
+import { resolveHomePath, checkIfTemplateIndexExists } from "./utils";
+import fs, { Stats } from "fs";
+import { BearTemplateError } from "./Error";
 
 describe("The utils package", () => {
   const OLD_ENV = process.env;
@@ -22,5 +24,47 @@ describe("The utils package", () => {
     process.env.HOME = "/my-home";
     const homepath = resolveHomePath("/test/project");
     expect(homepath).toBe("/test/project");
+  });
+
+  test("should returned resolved path if there is an index file at given position", async () => {
+    process.env.HOME = "/my-home";
+    jest.spyOn(fs, "stat").mockImplementationOnce((_path, callback) => {
+      const stats = new Stats();
+      stats.isFile = jest.fn().mockReturnValue(true);
+      // @ts-ignore
+      callback(null, stats);
+    });
+    const homepath = await checkIfTemplateIndexExists("~/test");
+    expect(homepath).toBe("/my-home/test");
+  });
+
+  test("should throw an error if file is not at given path", async () => {
+    process.env.HOME = "/my-home";
+    jest.spyOn(fs, "stat").mockImplementationOnce((_path, callback) => {
+      // @ts-ignore
+      callback(true, null);
+    });
+    try {
+      const homepath = await checkIfTemplateIndexExists("~/test");
+      expect(homepath).toBeUndefined();
+    } catch (e) {
+      expect(e instanceof BearTemplateError).toBeTruthy();
+    }
+  });
+
+  test("should throw an error if path exists but is not a file", async () => {
+    process.env.HOME = "/my-home";
+    jest.spyOn(fs, "stat").mockImplementationOnce((_path, callback) => {
+      const stats = new Stats();
+      stats.isFile = jest.fn().mockReturnValue(false);
+      // @ts-ignore
+      callback(null, stats);
+    });
+    try {
+      const homepath = await checkIfTemplateIndexExists("~/test");
+      expect(homepath).toBeUndefined();
+    } catch (e) {
+      expect(e instanceof BearTemplateError).toBeTruthy();
+    }
   });
 });

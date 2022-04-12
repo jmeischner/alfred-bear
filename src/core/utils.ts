@@ -15,8 +15,8 @@ export async function checkIfTemplateIndexExists(
   const indexPath = resolveHomePath(pathToIndex);
 
   return new Promise((resolve, _reject) => {
-    stat(indexPath, (err, _stats) => {
-      if (err)
+    stat(indexPath, (err, stats) => {
+      if (err || !stats.isFile())
         throw new BearTemplateError(
           `Cannot read your bearTemplateIndex (index.yml) file at ${indexPath}`
         );
