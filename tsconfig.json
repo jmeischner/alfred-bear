@@ -12,5 +12,9 @@
     "noImplicitAny": false,
     "skipLibCheck": true
   },
-  "include": ["src/alfred/templates.ts", "src/alfred/compile.ts"]
+  "include": [
+    "src/alfred/templates.ts",
+    "src/alfred/compile.ts",
+    "src/alfred/open.ts"
+  ]
 }
