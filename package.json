@@ -2,16 +2,18 @@
   "name": "alfred-bear",
   "version": "1.0.7",
   "description": "Alfred Workflow to handle bear templates",
-  "main": "src/core/BearTemplateIndex.d.ts",
+  "main": "workflow/alfred/templates.js",
   "type": "module",
   "repository": "https://github.com/jmeischner/alfred-bear",
   "scripts": {
     "test": "jest",
+    "prepublishOnly": "tsc",
     "postinstall": "alfy-init",
     "preuninstall": "alfy-cleanup",
     "build": "tsc",
     "dev": "tsc --watch"
   },
+  "files": ["workflow/**/*.js", "*.png", "info.plist"],
   "keywords": [
     "alfred",
     "alfredapp",
