@@ -16,6 +16,14 @@ export class CompiledTemplate {
 
   constructor(private templatePath: string) {}
 
+  /**
+   * Gets the variables in the form
+   * ```json
+   * {
+   *   "var": Record<string,string>
+   * }
+   * ```
+   * */
   set variables(vars: string | undefined) {
     if (vars) this._variables = JSON.parse(vars).var;
   }
