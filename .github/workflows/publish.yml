@@ -9,17 +9,23 @@ jobs:
   publish:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 16
       - run: npm ci --ignore-scripts
+      # set up git since we will later push to the repo
+      - run: git config --global user.name "GitHub Publish Action"
+      - run: git config --global user.email ""
+      # upgrade npm version in package.json to the tag used in the release.
+      - run: npm version ${{ github.event.release.tag_name }}
       - run: npm test
-      - name: Set output
-        id: version
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ steps.version.outputs.tag }}
           dry-run: true
+      # push the version changes to GitHub
+      - run: git push
+        env:
+          # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
