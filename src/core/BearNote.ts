@@ -15,13 +15,21 @@ export class BearNote {
     else this._text = `text=${urlencode(text)}`;
   }
 
+  get text(): string {
+    return this._text ?? "";
+  }
+
   set newWindow(newWindow: string | undefined) {
     if (!!newWindow) this._newWindow = `&new_window=true`;
   }
 
+  get newWindow(): string {
+    return this._newWindow ?? "";
+  }
+
   open(): void {
     if (this._text) {
-      open(`${BEAR_CREATE_NOTE}${this._text}${this._newWindow}`);
+      open(`${BEAR_CREATE_NOTE}${this._text}${this.newWindow}`);
     } else {
       throw new BearTemplateError(`No template content was given.`);
     }

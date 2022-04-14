@@ -44,12 +44,11 @@ describe("The utils package", () => {
       // @ts-ignore
       callback(true, null);
     });
-    try {
-      const homepath = await checkIfTemplateIndexExists("~/test");
-      expect(homepath).toBeUndefined();
-    } catch (e) {
-      expect(e instanceof BearTemplateError).toBeTruthy();
-    }
+    expect(checkIfTemplateIndexExists("~/test")).rejects.toEqual(
+      new BearTemplateError(
+        "Cannot read your bearTemplateIndex (index.yml) file at /my-home/test"
+      )
+    );
   });
 
   test("should throw an error if path exists but is not a file", async () => {
@@ -60,11 +59,10 @@ describe("The utils package", () => {
       // @ts-ignore
       callback(null, stats);
     });
-    try {
-      const homepath = await checkIfTemplateIndexExists("~/test");
-      expect(homepath).toBeUndefined();
-    } catch (e) {
-      expect(e instanceof BearTemplateError).toBeTruthy();
-    }
+    expect(checkIfTemplateIndexExists("~/test")).rejects.toEqual(
+      new BearTemplateError(
+        "Cannot read your bearTemplateIndex (index.yml) file at /my-home/test"
+      )
+    );
   });
 });
