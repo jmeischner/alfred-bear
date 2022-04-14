@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import fs from "fs";
 import { Template } from "./BearTemplateIndex.js";
+import { BearTemplateError } from "./Error.js";
 
 interface TemplateData {
   readonly variables?: Template["var"];
@@ -33,19 +34,32 @@ export class CompiledTemplate {
   }
 
   async executeScript(scriptPath?: string): Promise<void> {
-    const { default: script }: { default: Script } = scriptPath
-      ? await import(scriptPath)
-      : { default: async () => ({}) };
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { default: script }: { default: Script } = scriptPath
+          ? await import(scriptPath)
+          : { default: async () => ({}) };
 
-    const preScriptData = { ...this._variables, ...this._answer };
-    this._script = await script(preScriptData);
+        const preScriptData = { ...this._variables, ...this._answer };
+        this._script = await script(preScriptData);
+        resolve();
+      } catch (e: any) {
+        reject(
+          new BearTemplateError(`Could not load script file **${scriptPath}**`)
+        );
+      }
+    });
   }
 
   async compile(): Promise<string> {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
       const data = this.data;
-      const template = this.getCompiledTemplate();
-      resolve(template(data));
+      try {
+        const template = this.getCompiledTemplate();
+        resolve(template(data));
+      } catch (e: any) {
+        reject(e);
+      }
     });
   }
 
@@ -53,8 +67,14 @@ export class CompiledTemplate {
     return { ...this._script, ...this._variables, ...this._answer };
   }
 
-  private getCompiledTemplate() {
-    const fileContent = fs.readFileSync(this.templatePath, "utf8");
-    return Handlebars.compile(fileContent);
+  private getCompiledTemplate(): HandlebarsTemplateDelegate {
+    try {
+      const fileContent = fs.readFileSync(this.templatePath, "utf8");
+      return Handlebars.compile(fileContent);
+    } catch (e: any) {
+      throw new BearTemplateError(
+        `Template file **${this.templatePath}** could not be found`
+      );
+    }
   }
 }

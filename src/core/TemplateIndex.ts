@@ -19,6 +19,16 @@ export class TemplateIndex {
   }
 
   private checkFileIntegrity(indexFile: BearTemplateIndex): void {
+    if (!indexFile.templates) {
+      throw new BearTemplateError(
+        "The field `templates` is not defined inside your bearTemplateIndex"
+      );
+    }
+    if (indexFile.templates.some((t) => !t)) {
+      throw new BearTemplateError(
+        "There is at least one of your templates not defined inside your bearTemplateIndex"
+      );
+    }
     if (indexFile.templates.some((t) => !t.file))
       throw new BearTemplateError(
         'At least one of your templates has no "file" property'
@@ -33,7 +43,14 @@ export class TemplateIndex {
           throw new BearTemplateError(
             `Could not read index file at ${indexFile}`
           );
-        const parsedFile = yaml.parse(data);
+        let parsedFile: BearTemplateIndex = { templates: [] };
+        try {
+          parsedFile = yaml.parse(data);
+        } catch (e) {
+          throw new BearTemplateError(
+            `bearTemplateIndex yaml seems to be malformed: ${e}`
+          );
+        }
         this.checkFileIntegrity(parsedFile);
         resolve(parsedFile);
       });
