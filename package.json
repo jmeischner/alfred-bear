@@ -1,6 +1,6 @@
 {
   "name": "alfred-bear",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Alfred Workflow to handle bear templates",
   "main": "workflow/alfred/templates.js",
   "type": "module",
@@ -13,7 +13,11 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "files": ["workflow/**/*.js", "*.png", "info.plist"],
+  "files": [
+    "workflow/**/*.js",
+    "*.png",
+    "info.plist"
+  ],
   "keywords": [
     "alfred",
     "alfredapp",
