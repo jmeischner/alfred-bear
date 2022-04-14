@@ -1,6 +1,6 @@
 {
   "name": "alfred-bear",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Alfred Workflow to handle bear templates",
   "main": "src/core/BearTemplateIndex.d.ts",
   "type": "module",
