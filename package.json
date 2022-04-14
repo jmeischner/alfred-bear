@@ -7,7 +7,6 @@
   "repository": "https://github.com/jmeischner/alfred-bear",
   "scripts": {
     "test": "jest",
-    "prepublishOnly": "tsc",
     "postinstall": "alfy-init",
     "preuninstall": "alfy-cleanup",
     "build": "tsc",
