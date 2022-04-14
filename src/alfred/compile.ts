@@ -1,4 +1,3 @@
-import alfy from "alfy";
 import { CompiledTemplate } from "../core/CompiledTemplate.js";
 
 const {
@@ -9,7 +8,7 @@ const {
 } = process.env;
 
 if (!templatePath) {
-  alfy.error(`There is no path to the chosen template given!`);
+  console.log("::There is no path to the template given::");
 } else {
   const template = new CompiledTemplate(templatePath);
   template.variables = variables;

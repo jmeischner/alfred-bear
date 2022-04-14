@@ -18,6 +18,13 @@ export class TemplateIndex {
     this.pathToIndexFile = resolveHomePath(pathToIndexFile);
   }
 
+  private checkFileIntegrity(indexFile: BearTemplateIndex): void {
+    if (indexFile.templates.some((t) => !t.file))
+      throw new BearTemplateError(
+        'At least one of your templates has no "file" property'
+      );
+  }
+
   private async readIndexFile(): Promise<BearTemplateIndex> {
     const indexFile = await checkIfTemplateIndexExists(this.pathToIndexFile);
     return new Promise((resolve, _reject) => {
@@ -26,7 +33,9 @@ export class TemplateIndex {
           throw new BearTemplateError(
             `Could not read index file at ${indexFile}`
           );
-        resolve(yaml.parse(data));
+        const parsedFile = yaml.parse(data);
+        this.checkFileIntegrity(parsedFile);
+        resolve(parsedFile);
       });
     });
   }
