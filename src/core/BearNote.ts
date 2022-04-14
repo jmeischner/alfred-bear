@@ -1,6 +1,8 @@
 import open from "open";
 import { BearTemplateError } from "./Error.js";
-import urlencode from "urlencode";
+// TODO: Figure out, why this is not working
+// import urlencode from "urlencode";
+const urlencode = require('urlencode');
 
 const BEAR_CREATE_NOTE = "bear://x-callback-url/create?";
 
