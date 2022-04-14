@@ -1,6 +1,9 @@
 name: Publish
 
-on: push
+on:
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
   publish:
@@ -12,7 +15,11 @@ jobs:
           node-version: 16
       - run: npm ci --ignore-scripts
       - run: npm test
+      - name: Set output
+        id: version
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          tag: ${{ steps.version.outputs.tag }}
           dry-run: true
