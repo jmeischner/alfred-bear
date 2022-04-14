@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: install dependencies
-        run: npm install
+        run: npm ci
       - name: run tests
         run: npm run test
