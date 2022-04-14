@@ -24,7 +24,7 @@ export class CompiledTemplate {
     this._answer = answer ? { answer: answer } : undefined;
   }
 
-  async executeScript(scriptPath: string | undefined): Promise<void> {
+  async executeScript(scriptPath?: string): Promise<void> {
     const { default: script }: { default: Script } = scriptPath
       ? await import(scriptPath)
       : { default: async () => ({}) };
@@ -35,10 +35,14 @@ export class CompiledTemplate {
 
   async compile(): Promise<string> {
     return new Promise(async (resolve) => {
-      const data = { ...this._script, ...this._variables, ...this._answer };
+      const data = this.data;
       const template = this.getCompiledTemplate();
       resolve(template(data));
     });
+  }
+
+  get data() {
+    return { ...this._script, ...this._variables, ...this._answer };
   }
 
   private getCompiledTemplate() {

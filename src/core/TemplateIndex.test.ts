@@ -1,9 +1,9 @@
-import { Workflow } from "./Workflow";
+import { TemplateIndex } from "./TemplateIndex";
 import fs, { Stats } from "fs";
 
-describe("The Workflow", () => {
+describe("The TemplateIndex", () => {
   test("should return templates from a yaml BearTemplateIndex file", async () => {
-    const workflow = new Workflow("/test/path");
+    const workflow = new TemplateIndex("/test/path");
     jest.spyOn(fs, "stat").mockImplementationOnce((_path, callback) => {
       const stats = new Stats();
       stats.isFile = jest.fn().mockReturnValue(true);

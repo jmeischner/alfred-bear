@@ -10,7 +10,7 @@ export type TemplateMapperFunction<ResultType> = (
   array: Template[]
 ) => ResultType;
 
-export class Workflow {
+export class TemplateIndex {
   private templateIndex: BearTemplateIndex | null = null;
   private pathToIndexFile: string;
 

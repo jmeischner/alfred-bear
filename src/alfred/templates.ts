@@ -1,13 +1,13 @@
 import alfy from "alfy";
 import path from "path";
-import { Workflow } from "../core/Workflow.js";
+import { TemplateIndex } from "../core/TemplateIndex.js";
 import { AlfredTemplate } from "./AlfredTemplate.js";
 
 if (!process.env.bearTemplateIndex) {
   alfy.error(`'pathToIndex' is not set in the workflow variables.`);
 } else {
   try {
-    const workflow = new Workflow(process.env.bearTemplateIndex);
+    const workflow = new TemplateIndex(process.env.bearTemplateIndex);
     await workflow.init();
     const templateDir = path.dirname(workflow.indexFile);
     const templates = workflow.mapTemplates((template) => {
