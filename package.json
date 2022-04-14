@@ -1,14 +1,16 @@
 {
   "name": "alfred-bear",
-  "version": "0.3.7",
+  "version": "0.3.10",
   "description": "Alfred Workflow to handle bear templates",
-  "main": "index.js",
+  "main": "workflow/index.js",
   "type": "module",
   "repository": "https://github.com/jmeischner/alfred-bear",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "alfy-init",
-    "preuninstall": "alfy-cleanup"
+    "test": "jest",
+    "postinstall": "alfy-init && tsc",
+    "preuninstall": "alfy-cleanup",
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "keywords": [
     "alfred",
@@ -25,5 +27,13 @@
     "open": "^8.4.0",
     "urlencode": "^1.1.0",
     "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.23",
+    "@types/urlencode": "^1.1.2",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4"
   }
 }
