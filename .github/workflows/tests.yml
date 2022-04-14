@@ -1,0 +1,13 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: npm install
+      - name: run tests
+        run: npm run test
