@@ -1,0 +1,17 @@
+name: Publish
+
+on: push
+
+jobs:
+  runs-on: macos-latest
+  steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 16
+    - run: npm ci --ignore-scripts
+    - run: npm test
+    - uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        dry-run: true
