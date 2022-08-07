@@ -45,7 +45,7 @@ export class CompiledTemplate {
         resolve();
       } catch (e: any) {
         reject(
-          new BearTemplateError(`Could not load script file **${scriptPath}**`)
+          new BearTemplateError(`Could not load script file \`${scriptPath}\` \n\`\`\`${e}\n\`\`\``)
         );
       }
     });
