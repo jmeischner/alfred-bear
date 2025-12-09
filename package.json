@@ -28,18 +28,17 @@
   "author": "Jan Meischner",
   "license": "ISC",
   "dependencies": {
-    "alfred-notifier": "^0.2.3",
-    "alfy": "^1.1.0",
+    "alfy": "^3.0.0",
     "handlebars": "^4.7.7",
     "open": "^8.4.0",
     "urlencode": "^1.1.0",
     "yaml": "^2.2.2"
   },
   "devDependencies": {
-    "typescript": "^4.6.0",
-    "@types/urlencode": "^1.1.2",
     "@types/jest": "^27.4.1",
+    "@types/urlencode": "^1.1.2",
     "jest": "^27.5.1",
-    "ts-jest": "^27.1.4"
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.0"
   }
 }

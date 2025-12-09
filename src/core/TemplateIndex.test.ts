@@ -1,23 +1,50 @@
 import { TemplateIndex } from "./TemplateIndex";
-import fs, { Stats } from "fs";
+import fs from "fs";
 import { BearTemplateError } from "./Error";
 
 describe("The TemplateIndex", () => {
+  const createFakeStats = (isFile: boolean): fs.Stats =>
+    ({
+      isFile: jest.fn().mockReturnValue(isFile),
+    } as unknown as fs.Stats);
+
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  const mockStatAsFile = (isFile: boolean) => {
+    jest.spyOn(fs, "stat").mockImplementation(
+      ((
+        path: fs.PathLike | number,
+        options: any,
+        callback?: any
+      ) => {
+        const cb = typeof options === "function" ? options : callback;
+        cb(null, createFakeStats(isFile));
+      }) as unknown as typeof fs.stat
+    );
+  };
+
+  const mockReadFileWithContent = (content: string) => {
+    jest.spyOn(fs, "readFile").mockImplementation(
+      ((
+        path: fs.PathLike | number,
+        options: any,
+        callback?: any
+      ) => {
+        const cb = typeof options === "function" ? options : callback;
+        cb(null, content);
+      }) as unknown as typeof fs.readFile
+    );
+  };
+
   test("should return templates from a yaml BearTemplateIndex file", async () => {
     const workflow = new TemplateIndex("/test/path");
-    jest.spyOn(fs, "stat").mockImplementationOnce((_path, callback) => {
-      const stats = new Stats();
-      stats.isFile = jest.fn().mockReturnValue(true);
-      // @ts-ignore
-      callback(null, stats);
-    });
-    jest.spyOn(fs, "readFile").mockImplementation(
-      // @ts-ignore
-      (_path: any, _encoding: string, callback: any) => {
-        // @ts-ignore
-        callback(
-          null,
-          ` templates:
+
+    mockStatAsFile(true);
+
+    mockReadFileWithContent(
+      ` templates:
   - title: Daily Log
     file: "daily log/Daily Log.md"
     script: "daily log/script.js"
@@ -26,10 +53,10 @@ describe("The TemplateIndex", () => {
       DATE_FORMAT: "ddd., DD MMM. YYYY"
 
 `
-        );
-      }
     );
+
     await workflow.init();
+
     expect(workflow.templates).toStrictEqual([
       {
         title: "Daily Log",
@@ -45,19 +72,11 @@ describe("The TemplateIndex", () => {
 
   test("should throw an error if mandatory `file` property of at least one template is not given", async () => {
     const workflow = new TemplateIndex("/test/path");
-    jest.spyOn(fs, "stat").mockImplementationOnce((_path, callback) => {
-      const stats = new Stats();
-      stats.isFile = jest.fn().mockReturnValue(true);
-      // @ts-ignore
-      callback(null, stats);
-    });
-    jest.spyOn(fs, "readFile").mockImplementation(
-      // @ts-ignore
-      (_path: any, _encoding: string, callback: any) => {
-        // @ts-ignore
-        callback(
-          null,
-          ` templates:
+
+    mockStatAsFile(true);
+
+    mockReadFileWithContent(
+      ` templates:
   - title: Daily Log
     script: "daily log/script.js"
     newWindow: false
@@ -65,10 +84,9 @@ describe("The TemplateIndex", () => {
       DATE_FORMAT: "ddd., DD MMM. YYYY"
 
 `
-        );
-      }
     );
-    expect(workflow.init()).rejects.toEqual(
+
+    await expect(workflow.init()).rejects.toEqual(
       new BearTemplateError(
         'At least one of your templates has no "file" property'
       )
